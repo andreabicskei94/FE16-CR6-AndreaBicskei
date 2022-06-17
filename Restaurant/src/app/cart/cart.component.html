@@ -1,0 +1,74 @@
+<div class="row container body-content">
+
+    <div class="col-8 shadow p-1">
+        <div class="content card bg-secondary ">
+            <h3 class="">Your Cart:</h3>
+        </div>
+        <div class="content shadow  bg  card ">
+            <div class="card">
+                <div class="card-body">
+
+                    <div *ngFor="let item of cart" class="row">
+
+                        <div class="col-6">
+
+                            <img class="card-img-top w-50" src="{{ item.img}}" alt="Card image cap">
+                        </div>
+                        <div class="col-6">
+                            <div class="row">
+
+                                <h5 class="card-title col-9 ">{{ item.name }}</h5>
+                                <h5 class="card-title col-3 text-right">{{ item.price }}</h5>
+                                <p class="card-text">{{ item.description }}</p>
+                            </div>
+
+                        </div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-4 card shadow p-1">
+        <div class="content s bg-secondary ">
+            <h3 class="">Summary:</h3>
+        </div>
+        <div class="content shadow bg  card ">
+            <div class="card" style="width: 1;">
+                <div class="card-body">
+                    <div><strong> Total amount:</strong> {{this.total | currency}}</div>
+                    <div><strong> Service:</strong> {{this.service | currency}}</div>
+                    <div><strong> Discount:</strong> {{this.discount | currency}}</div>
+                    <div><strong> Final:</strong> {{this.final | currency}}</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+    <form [formGroup]="checkOutForm" (ngSubmit)="onSubmit(checkOutForm.value)">
+
+        <div class="input-group m-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" formControlName="name">
+        </div>
+
+        <div class="input-group m-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Address</span>
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" formControlName="address">
+        </div>
+
+
+        <button class="btn btn-success" type="submit">Purschase</button>
+
+
+    </form>
+
+</div>

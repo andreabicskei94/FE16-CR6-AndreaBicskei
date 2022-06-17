@@ -1,0 +1,32 @@
+<div class="container">
+    <h2 class="" style="font-family: 'Great Vibes', cursive; font-size: 3rem; display: flex; justify-content: center; padding-top: 2%;">Our Specialties</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div *ngFor=" let product of products; index as id ">
+
+            <div class="col ">
+
+
+                <div class="card h-100 " style="width: 18rem; ">
+                    <img src="{{product.img}} " class="card-img-top " alt="... ">
+                    <div class="card-body ">
+                        <h5 class="card-title ">{{product.name}}</h5>
+                        <p *ngIf="product.description " class="card-text "> {{ product.description }}</p>
+                        <p *ngIf="product.price " class="card-text "> {{ product.price }} €</p>
+
+                        <div *ngIf="product.availability; then thenBlock else elseBlock "></div>
+                        <ng-template #thenBlock>
+                            <div class="buttons d-flex justify-content-between "><a routerLink="/details/{{id}} " class="btn buttons btn-primary ">Details</a>
+                                <button class="btn btn-success " (click)="addToCart(product) ">Order</button></div>
+                        </ng-template>
+                        <ng-template #elseBlock>
+                            <p class=" "> Not available!</p>
+                        </ng-template>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
