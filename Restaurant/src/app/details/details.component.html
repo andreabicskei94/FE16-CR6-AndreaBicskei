@@ -3,7 +3,7 @@
     <h2>Details</h2>
     <button class="btn btn-outline-success m-3" routerLink="/menu">Go back </button>
     <div class="row">
-        <div *ngIf="products">
+        <div *ngFor="let product of products; index as i">
             <div class=" mb-3 col col-12 d-flex align-items-stretch ">
                 <div class="row g-1 container-fluid card shadow-lg bg-card-color">
                     <div class="container-fluid">
