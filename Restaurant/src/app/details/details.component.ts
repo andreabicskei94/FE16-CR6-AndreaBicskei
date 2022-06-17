@@ -1,28 +1,36 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, DoCheck } from '@angular/core';
+import { ActivatedRoute , Params } from '@angular/router';
 import { products } from '../products';
-import { CartService } from '../cart.service';
 import { IProducts } from '../IProducts';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css']
 })
-export class DetailsComponent implements OnInit {
+export class DetailsComponent implements OnInit , DoCheck{
+ 
+  productsz : IProducts = {} as IProducts;
+  id : number = 0;
+  count: number = 0;
+  productsx : IProducts[] = products;
+  constructor(private route : ActivatedRoute, private CS: CartService) { }
 
-  products: any;
-  constructor(private route : ActivatedRoute, private CS : CartService) { }
+  addToCartX(){
+    this.CS.addToCart(this.productsz);
 
-  addToCart(prod : any) {
-    alert("added to the cart");
-    this.CS.addToCart(prod);
-    console.log(this.CS.getItems())
   }
+
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      let id : any = params.get("id");
-      this.products = products[id];
+    this.route.params.subscribe((params:Params) => {
+      this.id = +params["id"];
+      this.productsz = products[this.id];
+
     })
+
+  }
+  ngDoCheck(): void {
+    this.count = this.CS.itemsLength();
   }
 }

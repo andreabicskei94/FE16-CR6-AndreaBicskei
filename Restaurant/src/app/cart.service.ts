@@ -8,6 +8,7 @@ export class CartService {
 
   constructor() { }
 
+//adding the items to the caer
   addToCart(prod: any) {
     this.items.push(prod);
   }
@@ -17,8 +18,15 @@ export class CartService {
     return this.items;
   }
 
+
+  //after purchasing clean the cart
   cleanCard() {
     this.items = [];
     return this.items;
+  }
+
+  
+  itemsLength(){
+    return this.items.length;
   }
 }

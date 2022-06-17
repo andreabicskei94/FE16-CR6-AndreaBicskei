@@ -1,28 +1,24 @@
-<div class="m-4 container">
-
+<div class="m-4 container body-content">
     <h2>Details</h2>
+
     <button class="btn btn-outline-success m-3" routerLink="/menu">Go back </button>
-    <div class="row">
-        <div *ngFor="let product of products; index as i">
-            <div class=" mb-3 col col-12 d-flex align-items-stretch ">
-                <div class="row g-1 container-fluid card shadow-lg bg-card-color">
-                    <div class="container-fluid">
-                        <img style="width:100%; height:220px; object-fit: cover;" src={{products.img}} class="card-img-top d-sm-none d-md-block d-none img-fluid" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">{{products.name}}</h5>
-                            <hr>
-                            <p class="card-text">{{products.price | currency}}</p>
+    <div class="card mb-3 card" style="max-width: 500px;">
+        <div class="row g-0">
+            <div class="  col-md-4">
+                <img src="{{productsz.img}}" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <div *ngIf="productsz" class="d-flex">
+                        <div class="d-flex flex-column mb-3">
+                            <h5 class="card-title p-2">{{productsz.name}}</h5>
 
-                            <p class="card-text">Availability: {{products.availability}}</p>
-                            <p class="card-text">{{products.description}}</p>
-                            <button class="btn btn-success" (click)="addToCart(products)">Order</button>
-
+                            <p class="card-text p-2">{{productsz.price | currency }}</p>
                         </div>
+                        <button class="btn btn-dark mt-auto p-2" (click)="addToCartX()"> Add to Cart</button>
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 </div>
